@@ -1,26 +1,73 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-brand-blue: #2D38E5;
+  --color-signal-red: #F90011;
+  --color-sky-tint:   #7FB7E0;
+  --color-ink-navy:   #10102E;
+  --color-cloud:      #F7FAFD;
+  --color-slate:      #22304A;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-sans: var(--font-sans), "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-dm-serif: var(--font-dm-serif), "Instrument Serif", serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer components {
+  .glass {
+    background: color-mix(in oklab, var(--color-cloud) 55%, transparent);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid color-mix(in oklab, white 40%, transparent);
+    border-radius: 1.5rem;
+    box-shadow:
+      0 8px 32px color-mix(in oklab, var(--color-ink-navy) 12%, transparent),
+      inset 0 1px 0 color-mix(in oklab, white 50%, transparent);
+    contain: layout paint style;
+  }
+  .glass-dark {
+    background: color-mix(in oklab, var(--color-ink-navy) 65%, transparent);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid color-mix(in oklab, white 12%, transparent);
   }
 }
 
+@supports not (backdrop-filter: blur(1px)) {
+  .glass, .glass-dark { background: var(--color-cloud); }
+}
+
+.hero-glass {
+  backdrop-filter: url(#liquid-refract) blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+@supports not (backdrop-filter: url(#liquid-refract)) {
+  .hero-glass { backdrop-filter: blur(24px) saturate(180%); }
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cloud);
+  color: var(--color-ink-navy);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Ensure interactive elements have a visible focus-visible ring */
+*:focus-visible {
+  outline: 2px solid var(--color-brand-blue);
+  outline-offset: 2px;
+}
+
+/* Respect prefers-reduced-motion for blobs/shines */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-play-state: paused !important;
+    transition: none !important;
+  }
 }
