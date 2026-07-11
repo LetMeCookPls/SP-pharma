@@ -33,15 +33,17 @@ export default function StatsSection() {
           variants={containerVariants}
         >
           <h2 className="text-[clamp(1.5rem,4vw,3.5rem)] font-sans font-medium tracking-tight mb-6 leading-[1.1] w-[590px] max-w-full">
-            <Typewriter text="Powering Formulations" delay={0} speed={0.012} /><br />
-            <Typewriter text="that " delay={0.25} speed={0.012} />
+            <span className="font-dm-serif italic font-normal text-[var(--color-brand-blue)]">
+              <Typewriter text="SP Pharmaceuticals:" delay={0} speed={0.012} />
+            </span><br />
+            <Typewriter text="Powering Formulations that " delay={0.25} speed={0.012} />
             <span className="font-dm-serif italic font-normal text-[var(--color-brand-blue)]">
               <Typewriter text="Ensure Absolute Purity" delay={0.35} speed={0.012} />
             </span>
           </h2>
 
           <p className="text-base md:text-lg text-[var(--color-slate)] leading-relaxed font-light max-w-lg whitespace-normal mb-16">
-            <Typewriter text="For years, the world's most demanding formulators and manufacturers have relied on our pharmaceutical-grade nicotine and strict quality control to secure their supply chains and ensure unmatched product consistency." delay={0.1} speed={0.012} />
+            <Typewriter text="For years, the world's most demanding formulators and manufacturers have relied on SP Pharmaceuticals' pharmaceutical-grade nicotine and strict quality control to secure their supply chains and ensure unmatched product consistency." delay={0.1} speed={0.012} />
           </p>
 
           <motion.div 
@@ -109,11 +111,11 @@ export default function StatsSection() {
             transition={{ duration: 0.8, delay: 0, ease: "easeOut" }}
             className="w-full max-w-[500px] lg:max-w-none lg:w-[120%] aspect-square origin-center overflow-hidden"
             style={{
-              WebkitMaskImage: `url("/logo.png")`,
+              WebkitMaskImage: `url("/sp-mask.svg")`,
               WebkitMaskSize: 'contain',
               WebkitMaskRepeat: 'no-repeat',
               WebkitMaskPosition: 'center',
-              maskImage: `url("/logo.png")`,
+              maskImage: `url("/sp-mask.svg")`,
               maskSize: 'contain',
               maskRepeat: 'no-repeat',
               maskPosition: 'center',
