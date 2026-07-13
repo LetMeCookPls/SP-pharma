@@ -11,18 +11,12 @@ import { useRef } from "react";
 import { useScroll } from "framer-motion";
 
 export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  const { scrollYProgress } = useScroll();
 
   return (
-    <div ref={containerRef} className="relative w-full h-full">
-      <div className="absolute inset-0 pointer-events-none z-50">
-        <div className="sticky top-0 h-screen w-full">
-          <FloatingLeaf scrollYProgress={scrollYProgress} />
-        </div>
+    <div className="relative w-full h-full">
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <FloatingLeaf scrollYProgress={scrollYProgress} />
       </div>
       <Hero />
       <StatsSection />

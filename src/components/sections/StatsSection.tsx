@@ -1,37 +1,32 @@
 "use client";
 
-import { motion, Variants } from "motion/react";
-import Typewriter from "@/components/ui/Typewriter";
+import { motion, Variants } from "framer-motion";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 export default function StatsSection() {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.06 } }
-  };
-
-  const statsContainerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.06, delayChildren: 0.1 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
 
   const statItemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
   return (
-    <section id="stats" className="bg-white text-[var(--color-ink-navy)] py-8 md:py-24 px-6 md:px-12 lg:px-[120px] w-full border-t border-[var(--color-ink-navy)]/10 overflow-hidden relative z-10">
-      <div className="w-full max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-16 lg:gap-[160px] items-stretch">
+    <section id="stats" className="bg-white py-24 md:py-32 overflow-hidden relative z-10 border-t border-[var(--color-ink-navy)]/5">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Left Column - Video */}
-        <div className="flex justify-center lg:justify-start items-center shrink-0 lg:w-1/2">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center max-w-7xl mx-auto">
+          
+          {/* Left Column - Video */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1.2 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0, ease: "easeOut" }}
-            className="w-full max-w-[500px] lg:max-w-none lg:w-[120%] lg:-ml-[10%] aspect-square origin-center overflow-hidden"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative w-full aspect-square max-w-lg mx-auto lg:max-w-none lg:w-[120%] lg:-ml-[10%] origin-center overflow-hidden group"
             style={{
               WebkitMaskImage: `url("/sp-mask.svg")`,
               WebkitMaskSize: 'contain',
@@ -43,94 +38,81 @@ export default function StatsSection() {
               maskPosition: 'center',
             }}
           >
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-ink-navy)]/40 to-transparent z-10 pointer-events-none" />
             <video
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000"
               src="https://res.cloudinary.com/dehtmwxwn/video/upload/v1783924868/gemini_generated_video_4231047e_ymhglv.mp4"
             />
           </motion.div>
-        </div>
 
-        {/* Right Column - Stats */}
-        <motion.div 
-          className="flex-1 flex flex-col justify-start relative z-10"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-        >
-          <h2 className="text-[clamp(1.5rem,4vw,3.5rem)] font-sans font-medium tracking-tight mb-6 leading-[1.1] w-[590px] max-w-full">
-            <span className="font-dm-serif italic font-normal text-[var(--color-brand-blue)]">
-              <Typewriter text="SP Pharmaceuticals:" delay={0} speed={0.012} />
-            </span><br />
-            <Typewriter text="Powering Formulations that " delay={0.25} speed={0.012} />
-            <span className="font-dm-serif italic font-normal text-[var(--color-brand-blue)]">
-              <Typewriter text="Ensure Absolute Purity" delay={0.35} speed={0.012} />
-            </span>
-          </h2>
-
-          <p className="text-base md:text-lg text-[var(--color-slate)] leading-relaxed font-light max-w-lg whitespace-normal mb-16">
-            <Typewriter text="For years, the world's most demanding formulators and manufacturers have relied on SP Pharmaceuticals' pharmaceutical-grade nicotine and strict quality control to secure their supply chains and ensure unmatched product consistency." delay={0.1} speed={0.012} />
-          </p>
-
+          {/* Right Column - Content & Stats */}
           <motion.div 
-            className="grid grid-cols-2 md:grid-cols-[max-content_max-content] gap-8 md:gap-x-16 lg:gap-x-24"
-            variants={statsContainerVariants}
+            className="flex flex-col justify-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={containerVariants}
           >
-            {/* Stat 1 */}
-            <motion.div variants={statItemVariants} className="flex flex-col group">
-              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)] group-hover:scale-110 group-hover:text-green-600 transition-all duration-500 origin-left">
-                <AnimatedCounter value={99.9} decimals={1} suffix="%" />
-              </div>
-              <div className="text-[10px] md:text-xs font-semibold text-[var(--color-slate)] uppercase tracking-wider">
-                EP/USP Purity Standard
-              </div>
+            <motion.div variants={statItemVariants} className="mb-12">
+              <span className="text-[var(--color-brand-blue)] font-bold tracking-widest uppercase text-sm mb-4 block">Our Impact</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-[var(--color-ink-navy)] mb-6 leading-[1.15]">
+                Powering Formulations that Ensure <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-emerald-400 italic font-dm-serif font-normal">Absolute Purity</span>
+              </h2>
+              <p className="text-lg md:text-xl text-[var(--color-slate)] leading-relaxed font-light max-w-xl">
+                For years, the world's most demanding formulators and manufacturers have relied on SP Pharmaceuticals' pharmaceutical-grade nicotine and strict quality control to secure their supply chains and ensure unmatched product consistency.
+              </p>
             </motion.div>
 
-            {/* Stat 2 */}
-            <motion.div variants={statItemVariants} className="flex flex-col group">
-              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)] group-hover:scale-110 group-hover:text-green-600 transition-all duration-500 origin-left">
-                <AnimatedCounter value={50} suffix="+" />
-              </div>
-              <div className="text-[10px] md:text-xs font-semibold text-[var(--color-slate)] uppercase tracking-wider">
-                Global Partners
-              </div>
-            </motion.div>
+            <motion.div 
+              className="grid grid-cols-2 gap-8 gap-y-12"
+              variants={containerVariants}
+            >
+              {/* Stat 1 */}
+              <motion.div variants={statItemVariants} className="flex flex-col group">
+                <div className="text-5xl md:text-6xl font-display font-bold mb-3 text-[var(--color-ink-navy)] group-hover:text-green-500 transition-colors duration-300">
+                  <AnimatedCounter value={99.9} decimals={1} suffix="%" />
+                </div>
+                <div className="text-xs md:text-sm font-semibold text-[var(--color-slate)]/70 uppercase tracking-wider">
+                  EP/USP Purity
+                </div>
+              </motion.div>
 
-            {/* Stat 3 */}
-            <motion.div variants={statItemVariants} className="flex flex-col group">
-              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)] group-hover:scale-110 group-hover:text-green-600 transition-all duration-500 origin-left">
-                <AnimatedCounter value={100} suffix="%" />
-              </div>
-              <div className="text-[10px] md:text-xs font-semibold text-[var(--color-slate)] uppercase tracking-wider">
-                Batch Traceability
-              </div>
-            </motion.div>
+              {/* Stat 3 */}
+              <motion.div variants={statItemVariants} className="flex flex-col group">
+                <div className="text-5xl md:text-6xl font-display font-bold mb-3 text-[var(--color-ink-navy)] group-hover:text-green-500 transition-colors duration-300">
+                  <AnimatedCounter value={100} suffix="%" />
+                </div>
+                <div className="text-xs md:text-sm font-semibold text-[var(--color-slate)]/70 uppercase tracking-wider">
+                  Traceability
+                </div>
+              </motion.div>
 
-            {/* Stat 4 */}
-            <motion.div variants={statItemVariants} className="flex flex-col group">
-              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)] group-hover:scale-110 group-hover:text-green-600 transition-all duration-500 origin-left">
-                <AnimatedCounter value={15} suffix="+" />
-              </div>
-              <div className="text-[10px] md:text-xs font-semibold text-[var(--color-slate)] uppercase tracking-wider">
-                Product Variants
-              </div>
-            </motion.div>
+              {/* Stat 4 */}
+              <motion.div variants={statItemVariants} className="flex flex-col group">
+                <div className="text-5xl md:text-6xl font-display font-bold mb-3 text-[var(--color-ink-navy)] group-hover:text-green-500 transition-colors duration-300">
+                  <AnimatedCounter value={3} suffix="+" />
+                </div>
+                <div className="text-xs md:text-sm font-semibold text-[var(--color-slate)]/70 uppercase tracking-wider">
+                  Product Variants
+                </div>
+              </motion.div>
 
-            {/* Stat 5 */}
-            <motion.div variants={statItemVariants} className="flex flex-col group">
-              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)] group-hover:scale-110 group-hover:text-green-600 transition-all duration-500 origin-left">
-                <AnimatedCounter value={24} suffix="/7" />
-              </div>
-              <div className="text-[10px] md:text-xs font-semibold text-[var(--color-slate)] uppercase tracking-wider">
-                Quality Control
-              </div>
+              {/* Stat 5 */}
+              <motion.div variants={statItemVariants} className="flex flex-col group">
+                <div className="text-5xl md:text-6xl font-display font-bold mb-3 text-[var(--color-ink-navy)] group-hover:text-green-500 transition-colors duration-300">
+                  <AnimatedCounter value={24} suffix="/7" />
+                </div>
+                <div className="text-xs md:text-sm font-semibold text-[var(--color-slate)]/70 uppercase tracking-wider">
+                  Quality Control
+                </div>
+              </motion.div>
             </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
