@@ -1,10 +1,10 @@
 "use client";
 
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function FloatingLeaf({ scrollYProgress }: { scrollYProgress: any }) {
+export default function FloatingLeaf({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
   const [isMounted, setIsMounted] = useState(false);
   const [windowHeight, setWindowHeight] = useState(1000);
 
