@@ -34,8 +34,8 @@ export default function ContactSection() {
     }
   }
 
-  // The 'q' parameter with the name in parentheses usually drops a pin with a label.
-  const mapUrl = `https://maps.google.com/maps?q=Plot+No.+6-B,+KIADB+Export+Promotion+Industrial+Park+I+Phase,+Ganjimata,+Mangalore,+Karnataka,+574144+(SP+Pharmaceuticals)&t=&z=14&ie=UTF8&iwloc=B&output=embed`;
+  // The 'q' parameter with the exact coordinates provided by the user.
+  const mapUrl = `https://maps.google.com/maps?q=12°58'45.3"N 74°57'25.3"E&t=&z=14&ie=UTF8&iwloc=B&output=embed`;
 
   return (
     <section className="py-24 relative z-10" id="contact">
