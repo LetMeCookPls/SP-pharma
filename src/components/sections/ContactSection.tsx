@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { PRODUCT_CATEGORIES, COMPANY_DATA } from "@/lib/constants";
 
 export default function ContactSection() {
@@ -113,7 +114,13 @@ export default function ContactSection() {
             </div>
 
             {/* Map Side */}
-            <div className="bg-white/40 h-80 lg:h-auto min-h-[400px]">
+            <motion.div 
+              initial={{ filter: "grayscale(100%)", opacity: 0.7 }}
+              whileInView={{ filter: "grayscale(0%)", opacity: 1 }}
+              viewport={{ once: false, margin: "-100px" }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="bg-white/40 h-80 lg:h-auto min-h-[400px]"
+            >
               <iframe
                 src="https://www.google.com/maps?q=KIADB+Export+Promotion+Industrial+Park+Ganjimata+Mangalore+Karnataka+574144&output=embed"
                 width="100%"
@@ -122,9 +129,9 @@ export default function ContactSection() {
                 allowFullScreen={false}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="opacity-90 grayscale hover:grayscale-0 transition-all duration-500"
+                className="w-full h-full"
               ></iframe>
-            </div>
+            </motion.div>
 
           </div>
         </div>

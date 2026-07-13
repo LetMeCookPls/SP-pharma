@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { COMPANY_STATS } from "@/lib/constants";
 
 export default function AboutPreview() {
@@ -17,18 +18,30 @@ export default function AboutPreview() {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="glass p-6 text-center">
-                <div className="text-3xl font-display font-bold text-[var(--color-signal-red)] mb-2">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9, x: 20 }}
+                whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="glass p-6 text-center hover:bg-white/60 hover:shadow-[0_0_20px_rgba(34,197,94,0.15)] transition-all duration-300"
+              >
+                <div className="text-3xl font-display font-bold text-[var(--color-signal-red)] mb-2 group-hover:text-green-600 transition-colors">
                   {COMPANY_STATS.years.split(" ")[0]}
                 </div>
                 <div className="text-sm font-medium text-[var(--color-slate)]">Years in Operation</div>
-              </div>
-              <div className="glass p-6 text-center">
-                <div className="text-3xl font-display font-bold text-[var(--color-brand-blue)] mb-2">
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9, x: 20 }}
+                whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                className="glass p-6 text-center hover:bg-white/60 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300"
+              >
+                <div className="text-3xl font-display font-bold text-[var(--color-brand-blue)] mb-2 group-hover:text-green-600 transition-colors">
                   {COMPANY_STATS.countries.split(" ")[0]}
                 </div>
                 <div className="text-sm font-medium text-[var(--color-slate)]">Countries Served</div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

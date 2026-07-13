@@ -15,15 +15,12 @@ export default function FloatingLeaf({ scrollYProgress }: { scrollYProgress: any
   const y = useTransform(scrollYProgress, [0, 1], ["10vh", "85vh"]);
   
   // Swaying motion side to side
-  const xTransform = useTransform(
+  const x = useTransform(
     scrollYProgress,
     [0, 0.2, 0.4, 0.6, 0.8, 1],
-    ["0vw", "10vw", "-10vw", "5vw", "-5vw", "0vw"]
+    ["0vw", "-8vw", "2vw", "-5vw", "1vw", "0vw"]
   );
   
-  // Need to combine -50% translateX (to center) with our swaying motion
-  const x = useMotionTemplate`calc(-50% + ${xTransform})`;
-
   // Continuous rotation
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 720]);
 
@@ -44,7 +41,7 @@ export default function FloatingLeaf({ scrollYProgress }: { scrollYProgress: any
 
   return (
     <motion.div
-      className="absolute left-1/2 pointer-events-none"
+      className="absolute right-[5vw] xl:right-[10vw] pointer-events-none z-50"
       style={{
         y,
         x,
@@ -63,6 +60,7 @@ export default function FloatingLeaf({ scrollYProgress }: { scrollYProgress: any
             width={leafSize}
             height={leafSize}
             className="object-contain drop-shadow-xl"
+            style={{ width: "auto", height: "auto" }}
             priority
           />
         </motion.div>
@@ -78,6 +76,7 @@ export default function FloatingLeaf({ scrollYProgress }: { scrollYProgress: any
             width={leafSize}
             height={leafSize}
             className="object-contain drop-shadow-xl"
+            style={{ width: "auto", height: "auto" }}
           />
         </motion.div>
 
@@ -92,6 +91,7 @@ export default function FloatingLeaf({ scrollYProgress }: { scrollYProgress: any
             width={leafSize}
             height={leafSize}
             className="object-contain drop-shadow-xl"
+            style={{ width: "auto", height: "auto" }}
           />
         </motion.div>
       </div>

@@ -1,23 +1,37 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { COMPANY_DATA } from "@/lib/constants";
 
 export default function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-[-20]">
+        <Image
+          src="/bg-image.png"
+          alt="Hero Background"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        {/* Light overlay to ensure the dark text and glassmorphism stand out */}
+        <div className="absolute inset-0 bg-white/40" />
+      </div>
+
       {/* Background blobs for refraction */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 mix-blend-multiply opacity-50">
         <div className="absolute top-[20%] left-[20%] w-[40vw] h-[40vw] bg-[var(--color-brand-blue)]/20 rounded-full blur-[100px] animate-blob" />
         <div className="absolute top-[40%] right-[10%] w-[35vw] h-[35vw] bg-[var(--color-signal-red)]/15 rounded-full blur-[100px] animate-blob animation-delay-2000" />
         <div className="absolute bottom-[10%] left-[40%] w-[45vw] h-[45vw] bg-[var(--color-sky-tint)]/25 rounded-full blur-[120px] animate-blob animation-delay-4000" />
       </div>
 
-      <div className="container mx-auto px-4 z-10">
+      <div className="container mx-auto px-4 z-10 flex">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="hero-glass rounded-3xl p-8 md:p-16 max-w-4xl mx-auto border border-white/20 shadow-2xl"
+          className="hero-glass rounded-3xl p-8 md:p-16 max-w-3xl mr-auto md:ml-8 lg:ml-16 border border-white/20 shadow-2xl relative z-10"
         >
           <h1 className="text-4xl md:text-6xl font-bold font-display text-[var(--color-ink-navy)] leading-tight mb-6">
             Pharmaceutical-Grade Nicotine, Manufactured for Global Standards.

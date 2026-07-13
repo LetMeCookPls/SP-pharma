@@ -24,9 +24,39 @@ export default function StatsSection() {
     <section id="stats" className="bg-white text-[var(--color-ink-navy)] py-8 md:py-24 px-6 md:px-12 lg:px-[120px] w-full border-t border-[var(--color-ink-navy)]/10 overflow-hidden relative z-10">
       <div className="w-full max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-16 lg:gap-[160px] items-stretch">
         
-        {/* Left Column */}
+        {/* Left Column - Video */}
+        <div className="flex justify-center lg:justify-start items-center shrink-0 lg:w-1/2">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1.2 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0, ease: "easeOut" }}
+            className="w-full max-w-[500px] lg:max-w-none lg:w-[120%] lg:-ml-[10%] aspect-square origin-center overflow-hidden"
+            style={{
+              WebkitMaskImage: `url("/sp-mask.svg")`,
+              WebkitMaskSize: 'contain',
+              WebkitMaskRepeat: 'no-repeat',
+              WebkitMaskPosition: 'center',
+              maskImage: `url("/sp-mask.svg")`,
+              maskSize: 'contain',
+              maskRepeat: 'no-repeat',
+              maskPosition: 'center',
+            }}
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+              src="https://res.cloudinary.com/dehtmwxwn/video/upload/v1783924868/gemini_generated_video_4231047e_ymhglv.mp4"
+            />
+          </motion.div>
+        </div>
+
+        {/* Right Column - Stats */}
         <motion.div 
-          className="flex-1 flex flex-col justify-start"
+          className="flex-1 flex flex-col justify-start relative z-10"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -51,8 +81,8 @@ export default function StatsSection() {
             variants={statsContainerVariants}
           >
             {/* Stat 1 */}
-            <motion.div variants={statItemVariants} className="flex flex-col">
-              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)]">
+            <motion.div variants={statItemVariants} className="flex flex-col group">
+              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)] group-hover:scale-110 group-hover:text-green-600 transition-all duration-500 origin-left">
                 <AnimatedCounter value={99.9} decimals={1} suffix="%" />
               </div>
               <div className="text-[10px] md:text-xs font-semibold text-[var(--color-slate)] uppercase tracking-wider">
@@ -61,8 +91,8 @@ export default function StatsSection() {
             </motion.div>
 
             {/* Stat 2 */}
-            <motion.div variants={statItemVariants} className="flex flex-col">
-              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)]">
+            <motion.div variants={statItemVariants} className="flex flex-col group">
+              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)] group-hover:scale-110 group-hover:text-green-600 transition-all duration-500 origin-left">
                 <AnimatedCounter value={50} suffix="+" />
               </div>
               <div className="text-[10px] md:text-xs font-semibold text-[var(--color-slate)] uppercase tracking-wider">
@@ -71,8 +101,8 @@ export default function StatsSection() {
             </motion.div>
 
             {/* Stat 3 */}
-            <motion.div variants={statItemVariants} className="flex flex-col">
-              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)]">
+            <motion.div variants={statItemVariants} className="flex flex-col group">
+              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)] group-hover:scale-110 group-hover:text-green-600 transition-all duration-500 origin-left">
                 <AnimatedCounter value={100} suffix="%" />
               </div>
               <div className="text-[10px] md:text-xs font-semibold text-[var(--color-slate)] uppercase tracking-wider">
@@ -81,8 +111,8 @@ export default function StatsSection() {
             </motion.div>
 
             {/* Stat 4 */}
-            <motion.div variants={statItemVariants} className="flex flex-col">
-              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)]">
+            <motion.div variants={statItemVariants} className="flex flex-col group">
+              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)] group-hover:scale-110 group-hover:text-green-600 transition-all duration-500 origin-left">
                 <AnimatedCounter value={15} suffix="+" />
               </div>
               <div className="text-[10px] md:text-xs font-semibold text-[var(--color-slate)] uppercase tracking-wider">
@@ -91,8 +121,8 @@ export default function StatsSection() {
             </motion.div>
 
             {/* Stat 5 */}
-            <motion.div variants={statItemVariants} className="flex flex-col">
-              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)]">
+            <motion.div variants={statItemVariants} className="flex flex-col group">
+              <div className="text-4xl md:text-5xl lg:text-[56px] font-dm-serif tracking-tight mb-3 text-[var(--color-signal-red)] group-hover:scale-110 group-hover:text-green-600 transition-all duration-500 origin-left">
                 <AnimatedCounter value={24} suffix="/7" />
               </div>
               <div className="text-[10px] md:text-xs font-semibold text-[var(--color-slate)] uppercase tracking-wider">
@@ -101,36 +131,6 @@ export default function StatsSection() {
             </motion.div>
           </motion.div>
         </motion.div>
-
-        {/* Right Column */}
-        <div className="flex justify-center lg:justify-end items-center shrink-0 lg:w-1/2">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1.2 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0, ease: "easeOut" }}
-            className="w-full max-w-[500px] lg:max-w-none lg:w-[120%] aspect-square origin-center overflow-hidden"
-            style={{
-              WebkitMaskImage: `url("/sp-mask.svg")`,
-              WebkitMaskSize: 'contain',
-              WebkitMaskRepeat: 'no-repeat',
-              WebkitMaskPosition: 'center',
-              maskImage: `url("/sp-mask.svg")`,
-              maskSize: 'contain',
-              maskRepeat: 'no-repeat',
-              maskPosition: 'center',
-            }}
-          >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-              src="https://app-uploads.krea.ai/wan-videos/7f348c17-c3aa-40c9-9d5b-a2bed9a72c2e.mp4"
-            />
-          </motion.div>
-        </div>
       </div>
     </section>
   );
