@@ -63,7 +63,7 @@ export default function StatsSection() {
                 Powering Formulations that Ensure <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-emerald-400 italic font-dm-serif font-normal">Absolute Purity</span>
               </h2>
               <p className="text-lg md:text-xl text-[var(--color-slate)] leading-relaxed font-light max-w-xl">
-                For years, the world's most demanding formulators and manufacturers have relied on SP Pharmaceuticals' pharmaceutical-grade nicotine and strict quality control to secure their supply chains and ensure unmatched product consistency.
+                For years, the world&apos;s most demanding formulators and manufacturers have relied on SP Pharmaceuticals&apos; pharmaceutical-grade nicotine and strict quality control to secure their supply chains and ensure unmatched product consistency.
               </p>
             </motion.div>
 

@@ -9,6 +9,7 @@ export default function FloatingLeaf({ scrollYProgress }: { scrollYProgress: Mot
   const [windowHeight, setWindowHeight] = useState(1000);
 
   useEffect(() => {
+    // eslint-disable-next-line
     setIsMounted(true);
     setWindowHeight(window.innerHeight);
     
