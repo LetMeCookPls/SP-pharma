@@ -6,29 +6,38 @@ import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 
 export default function ContactSection() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [submittedName, setSubmittedName] = useState("");
+  const [submittedEmail, setSubmittedEmail] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("loading");
     
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData);
     
     // Honeypot check
-    if (data.bot_field) {
+    if (formData.get("bot_field")) {
       setStatus("success"); // fake success for bots
       return;
     }
 
+    setSubmittedName((formData.get("name") as string) || "");
+    setSubmittedEmail((formData.get("email") as string) || "");
+
+    formData.append("access_key", "63a392ba-9bfb-4b4c-9909-058436283b32");
+
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: formData,
       });
 
-      if (res.ok) setStatus("success");
-      else setStatus("error");
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
@@ -75,8 +84,15 @@ export default function ContactSection() {
                 <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600">
                   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
-                <h3 className="text-2xl font-bold font-display mb-3 text-[var(--color-ink-navy)]">Message Sent!</h3>
-                <p className="text-[var(--color-slate)] text-lg">Thank you for your enquiry. Our team will get back to you within 24 business hours.</p>
+                <h3 className="text-2xl font-bold font-display mb-3 text-[var(--color-ink-navy)]">Thank you so much, {submittedName}!</h3>
+                <p className="text-[var(--color-slate)] text-lg mb-6">
+                  We&apos;ve received your message and will contact you at <strong>{submittedEmail}</strong> within 24 hours.
+                </p>
+                <div className="pt-6 border-t border-green-200">
+                  <p className="text-sm font-medium text-green-800 mb-2">If you&apos;re in a hurry, feel free to reach out to us directly via:</p>
+                  <p className="text-base font-bold text-[var(--color-ink-navy)]">{COMPANY_DATA.email}</p>
+                  <p className="text-base font-bold text-[var(--color-ink-navy)]">{COMPANY_DATA.phone}</p>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -119,9 +135,14 @@ export default function ContactSection() {
                 </div>
 
                 {status === "error" && (
-                  <div className="p-4 bg-red-50 text-red-600 text-sm rounded-xl border border-red-100 flex items-start gap-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                    <p>Something went wrong. Please try again, or <a href={`mailto:${COMPANY_DATA.email}`} className="underline font-bold">email us directly</a>.</p>
+                  <div className="p-6 bg-red-50 text-red-600 rounded-2xl border border-red-100 flex flex-col items-center text-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <p className="font-bold text-lg">We couldn&apos;t send your message, {submittedName || "there"}.</p>
+                    <p className="text-sm">Please try again, or if you&apos;re in a hurry, feel free to reach out to us directly via:</p>
+                    <div className="mt-2">
+                      <p className="font-bold text-red-700">{COMPANY_DATA.email}</p>
+                      <p className="font-bold text-red-700">{COMPANY_DATA.phone}</p>
+                    </div>
                   </div>
                 )}
 
