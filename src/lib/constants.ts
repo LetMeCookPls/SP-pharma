@@ -27,9 +27,13 @@ export const CERTIFICATIONS = [
   "[Certification — e.g. WHO-GMP]"
 ];
 
+export const COMPANY_START_YEAR = 2017;
+
 export const COMPANY_STATS = {
-  years: "[X]+ years in operation",
-  countries: "[X]+ countries served",
+  get years() {
+    return new Date().getFullYear() - COMPANY_START_YEAR;
+  },
+  clients: "100+",
 };
 
 export const REGULATORY_NOTICE = "SP Pharmaceuticals supplies nicotine and nicotine derivatives to licensed businesses, formulators, and institutional buyers for lawful industrial and pharmaceutical use. [Insert applicable regulatory/export compliance statement — confirm exact wording with legal/compliance counsel before publishing].";

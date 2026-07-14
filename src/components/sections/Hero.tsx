@@ -9,11 +9,22 @@ export default function Hero() {
     <section className="relative min-h-[95vh] flex items-center justify-center pt-24 pb-12 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-[-20]">
+        {/* Desktop Image */}
         <Image
           src="/bg-image.png"
-          alt="Hero Background"
+          alt="Hero Background Desktop"
           fill
-          className="object-cover object-center"
+          sizes="100vw"
+          className="object-cover object-center hidden md:block"
+          priority
+        />
+        {/* Mobile Image */}
+        <Image
+          src="/bg-image-mob.png"
+          alt="Hero Background Mobile"
+          fill
+          sizes="100vw"
+          className="object-cover object-center block md:hidden"
           priority
         />
         {/* Dark elegant overlay for perfect text contrast */}
@@ -38,7 +49,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-[5rem] font-bold font-display text-white leading-[1.1] mb-8"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-bold font-display text-white leading-[1.1] mb-8 break-words"
           >
             Pharmaceutical-Grade <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Nicotine</span>.
           </motion.h1>
@@ -47,7 +58,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="text-lg md:text-2xl text-white/80 mb-12 max-w-2xl leading-relaxed font-light"
+            className="text-base sm:text-lg md:text-2xl text-white/80 mb-12 max-w-2xl leading-relaxed font-light"
           >
             {COMPANY_DATA.name} supplies ultra-pure nicotine and nicotine derivatives to licensed formulators and manufacturers globally, manufactured to stringent standards.
           </motion.p>

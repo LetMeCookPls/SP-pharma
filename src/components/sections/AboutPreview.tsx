@@ -26,7 +26,7 @@ export default function AboutPreview() {
                 className="glass p-6 text-center hover:bg-white/60 hover:shadow-[0_0_20px_rgba(34,197,94,0.15)] transition-all duration-300"
               >
                 <div className="text-3xl font-display font-bold text-[var(--color-signal-red)] mb-2 group-hover:text-green-600 transition-colors">
-                  {COMPANY_STATS.years.split(" ")[0]}
+                  {COMPANY_STATS.years}+
                 </div>
                 <div className="text-sm font-medium text-[var(--color-slate)]">Years in Operation</div>
               </motion.div>
@@ -38,9 +38,9 @@ export default function AboutPreview() {
                 className="glass p-6 text-center hover:bg-white/60 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300"
               >
                 <div className="text-3xl font-display font-bold text-[var(--color-brand-blue)] mb-2 group-hover:text-green-600 transition-colors">
-                  {COMPANY_STATS.countries.split(" ")[0]}
+                  {COMPANY_STATS.clients}
                 </div>
-                <div className="text-sm font-medium text-[var(--color-slate)]">Countries Served</div>
+                <div className="text-sm font-medium text-[var(--color-slate)]">Satisfied B2B Clients</div>
               </motion.div>
             </div>
           </div>

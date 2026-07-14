@@ -29,15 +29,15 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="glass-dark p-8 text-center text-white">
             <div className="text-4xl font-display font-bold text-[var(--color-brand-blue)] mb-2">
-              {COMPANY_STATS.years.split(" ")[0]}
+              {COMPANY_STATS.years}+
             </div>
             <div className="text-sm font-medium text-white/70">Years in Operation</div>
           </div>
           <div className="glass-dark p-8 text-center text-white">
             <div className="text-4xl font-display font-bold text-[var(--color-brand-blue)] mb-2">
-              {COMPANY_STATS.countries.split(" ")[0]}
+              {COMPANY_STATS.clients}
             </div>
-            <div className="text-sm font-medium text-white/70">Countries Served</div>
+            <div className="text-sm font-medium text-white/70">Satisfied B2B Clients</div>
           </div>
         </div>
       </div>

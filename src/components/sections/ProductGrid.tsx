@@ -8,8 +8,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const PRODUCTS = [
   {
-    name: "Nicotine Alkaloid",
-    concentration: "90% / 95%",
+    name: "Nicotine Alkaloids",
+    concentration: "95%",
+    grade: "Industrial Intermediate Grade",
     packSizes: "100g to 1Kg, 1Kg, 5Kg, 10Kg to 200Kg",
     image: "/Nicotine Alkaloid.png",
     description: "High-purity liquid nicotine extracted from premium tobacco leaves, ideal for advanced formulations."
@@ -17,13 +18,15 @@ const PRODUCTS = [
   {
     name: "Nicotine Sulphate",
     concentration: "40%",
+    grade: "Agricultural Grade",
     packSizes: "100g to 1Kg, 1Kg, 5Kg, 10Kg to 200Kg",
     image: "/Nicotine Sulphate.png",
     description: "Stable nicotine salt solution commonly used in agricultural and specialized industrial applications."
   },
   {
-    name: "Nicotine Pure",
+    name: "Pure Nicotine",
     concentration: "99.99%",
+    grade: "Industrial Intermediate Grade",
     packSizes: "100g to 1Kg, 1Kg, 5Kg, 10Kg to 200Kg",
     image: "/Nicotine.png",
     description: "Ultra-pure pharmaceutical grade nicotine designed for medicinal and precision manufacturing."
@@ -107,8 +110,15 @@ export default function ProductGrid() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <div className="inline-block bg-green-100 text-green-800 text-sm md:text-base font-semibold px-5 py-2 rounded-full mb-6 w-fit shadow-sm border border-green-200">
-                    {product.concentration} Purity
+                  <div className="flex flex-wrap gap-3 mb-6">
+                    <div className="inline-block bg-green-100 text-green-800 text-sm md:text-base font-semibold px-5 py-2 rounded-full shadow-sm border border-green-200">
+                      {product.concentration} Purity
+                    </div>
+                    {product.grade && (
+                      <div className="inline-block bg-blue-100 text-blue-800 text-sm md:text-base font-semibold px-5 py-2 rounded-full shadow-sm border border-blue-200">
+                        {product.grade}
+                      </div>
+                    )}
                   </div>
                   
                   <h3 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-[var(--color-ink-navy)] mb-6 leading-tight">
