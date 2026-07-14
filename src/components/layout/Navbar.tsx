@@ -13,6 +13,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   
+  const isHome = pathname === '/';
+  const isDarkHeader = isHome && !scrolled;
+  
   const whatsappUrl = `https://wa.me/${COMPANY_DATA.whatsapp}?text=${encodeURIComponent("Hi SP Pharmaceuticals, I'd like to enquire about your products.")}`;
 
   // Handle scroll effect
@@ -43,9 +46,11 @@ export default function Navbar() {
         <nav className="container mx-auto flex items-center justify-between px-6 py-3">
           <Link href="/" className="flex items-center gap-3 group relative z-50">
             <div className="relative overflow-hidden transition-transform group-hover:scale-105">
-              <Image src="/logo.png" alt="SP Pharmaceuticals Logo" width={40} height={40} className="w-9 md:w-10 h-auto object-contain" priority />
+              <Image src="/logo.png" alt="SP Pharmaceuticals Logo" width={56} height={56} className="w-12 md:w-14 h-auto object-contain" priority />
             </div>
-            <span className="font-display font-bold text-xl md:text-2xl tracking-tight text-[var(--color-brand-blue)]">
+            <span className={`font-display font-bold text-xl md:text-2xl tracking-tight transition-colors duration-300 ${
+              isDarkHeader ? "text-white drop-shadow-md" : "text-[var(--color-brand-blue)]"
+            }`}>
               SP Pharmaceuticals
             </span>
           </Link>

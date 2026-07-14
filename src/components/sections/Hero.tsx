@@ -32,7 +32,7 @@ export default function Hero() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 z-10 flex w-full">
-        <div className="max-w-4xl mr-auto pt-10 md:pt-0">
+        <div className="max-w-4xl mr-auto pt-16 md:pt-12">
           
           {/* Top subtle badge */}
           <motion.div
@@ -90,7 +90,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="mt-16 pt-10 border-t border-white/20 flex flex-wrap gap-8 md:gap-12 items-center text-white/80"
+            className="mt-16 flex flex-wrap gap-8 md:gap-12 items-center text-white/80"
           >
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 shadow-inner">

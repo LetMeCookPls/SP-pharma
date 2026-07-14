@@ -15,10 +15,9 @@ export const NAV_LINKS = [
 ];
 
 export const PRODUCT_CATEGORIES = [
-  "Pharmaceutical Grade Nicotine (USP/BP/EP)",
-  "Nicotine Bitartrate Dihydrate",
-  "Nicotine Polacrilex",
-  "Nicotine Salts — Custom Concentrations"
+  "Pure Nicotine",
+  "Nicotine Sulphate",
+  "Nicotine Alkaloids"
 ];
 
 export const CERTIFICATIONS = [
