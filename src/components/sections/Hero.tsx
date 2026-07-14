@@ -14,7 +14,7 @@ export default function Hero() {
           src="/bg-image.png"
           alt="Hero Background Desktop"
           fill
-          sizes="100vw"
+          sizes="(max-width: 768px) 0vw, 100vw"
           className="object-cover object-center hidden md:block"
           priority
         />
@@ -23,7 +23,7 @@ export default function Hero() {
           src="/bg-image-mob.png"
           alt="Hero Background Mobile"
           fill
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, 0vw"
           className="object-cover object-center block md:hidden"
           priority
         />
