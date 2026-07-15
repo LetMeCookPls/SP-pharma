@@ -1,32 +1,55 @@
 "use client";
 
-import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
+import { motion, useTransform, useSpring, MotionValue } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function FloatingLeaf({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
   const [isMounted, setIsMounted] = useState(false);
   const [windowHeight, setWindowHeight] = useState(1000);
+  const [leafSize, setLeafSize] = useState(450);
 
   useEffect(() => {
-    // eslint-disable-next-line
     setIsMounted(true);
-    setWindowHeight(window.innerHeight);
     
-    const handleResize = () => setWindowHeight(window.innerHeight);
+    const updateDimensions = () => {
+      setWindowHeight(window.innerHeight);
+      if (window.innerWidth < 768) {
+        setLeafSize(150); // smaller on mobile to reduce fill rate and improve performance
+      } else if (window.innerWidth < 1024) {
+        setLeafSize(280); // tablet size
+      } else {
+        setLeafSize(450); // full desktop size
+      }
+    };
+
+    updateDimensions();
+    
+    let lastWidth = window.innerWidth;
+    const handleResize = () => {
+      // Mobile browsers trigger 'resize' events during scroll when the dynamic address bar hides/shows.
+      // By checking window.innerWidth, we ignore height-only resize events, preventing synchronous 
+      // React state updates and re-renders on scroll, which solves frame rate drops.
+      if (window.innerWidth !== lastWidth) {
+        updateDimensions();
+        lastWidth = window.innerWidth;
+      }
+    };
+
     window.addEventListener("resize", handleResize, { passive: true });
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Use a spring to completely eliminate scroll lag and frame skipping
+  // Configured with high precision rest parameters for responsiveness
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
+    restSpeed: 0.001
   });
 
   // Exact pixel calculations instead of CSS strings so the GPU can interpolate flawlessly
-  const leafSize = 450;
   const startY = windowHeight * 0.1;
   const endY = windowHeight - leafSize;
 
@@ -54,10 +77,9 @@ export default function FloatingLeaf({ scrollYProgress }: { scrollYProgress: Mot
 
   if (!isMounted) return null;
 
-
   return (
     <motion.div
-      className="absolute right-[5vw] xl:right-[10vw] pointer-events-none z-0"
+      className="absolute right-[5vw] xl:right-[10vw] pointer-events-none z-0 will-change-transform"
       style={{
         y,
         x,
@@ -67,45 +89,45 @@ export default function FloatingLeaf({ scrollYProgress }: { scrollYProgress: Mot
       <div className="relative" style={{ width: leafSize, height: leafSize }}>
         {/* Green Leaf */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center will-change-opacity"
           style={{ opacity: greenOpacity }}
         >
           <Image
             src="/leaf-green.png"
             alt="Green Leaf"
             fill
-            sizes="450px"
-            className="object-contain drop-shadow-xl"
+            sizes={`${leafSize}px`}
+            className="object-contain drop-shadow-none md:drop-shadow-xl"
             priority
           />
         </motion.div>
 
         {/* Yellow Leaf */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center will-change-opacity"
           style={{ opacity: yellowOpacity }}
         >
           <Image
             src="/leaf-yellow.png"
             alt="Yellow Leaf"
             fill
-            sizes="450px"
-            className="object-contain drop-shadow-xl"
+            sizes={`${leafSize}px`}
+            className="object-contain drop-shadow-none md:drop-shadow-xl"
             priority
           />
         </motion.div>
 
         {/* Brown Leaf */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center will-change-opacity"
           style={{ opacity: brownOpacity }}
         >
           <Image
             src="/leaf-brown.png"
             alt="Brown Leaf"
             fill
-            sizes="450px"
-            className="object-contain drop-shadow-xl"
+            sizes={`${leafSize}px`}
+            className="object-contain drop-shadow-none md:drop-shadow-xl"
           />
         </motion.div>
       </div>
