@@ -3,7 +3,7 @@ import { COMPANY_STATS } from "@/lib/constants";
 
 export default function AboutPreview() {
   return (
-    <section className="py-20 relative z-10">
+    <section id="about" className="py-20 relative z-10">
       <div className="container mx-auto px-4 md:px-8">
         <div className="glass rounded-3xl p-8 md:p-12">
           <div className="grid md:grid-cols-2 gap-12 items-center">
