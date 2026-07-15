@@ -20,11 +20,7 @@ export const PRODUCT_CATEGORIES = [
   "Nicotine Alkaloids"
 ];
 
-export const CERTIFICATIONS = [
-  "[Certification — e.g. GMP]",
-  "[Certification — e.g. ISO 9001]",
-  "[Certification — e.g. WHO-GMP]"
-];
+
 
 export const COMPANY_START_YEAR = 2017;
 
